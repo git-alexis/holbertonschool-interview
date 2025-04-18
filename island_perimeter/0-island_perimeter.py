@@ -9,15 +9,15 @@ def island_perimeter(grid):
     width = len(grid[0])
 
     for indexRow in range(height):
-        for indexColumn in range(width):
-            if grid[indexRow][indexColumn] == 1:
-                if indexRow == 0 or grid[indexRow - 1][indexColumn] == 0:
+        for indexCol in range(width):
+            if grid[indexRow][indexCol] == 1:
+                if indexRow == 0 or grid[indexRow - 1][indexCol] == 0:
                     perimeter += 1
-                if indexRow == height - 1 or grid[indexRow + 1][indexColumn] == 0:
+                if indexRow == height - 1 or grid[indexRow + 1][indexCol] == 0:
                     perimeter += 1
-                if indexColumn == 0 or grid[indexRow][indexColumn - 1] == 0:
+                if indexCol == 0 or grid[indexRow][indexCol - 1] == 0:
                     perimeter += 1
-                if indexColumn == width - 1 or grid[indexRow][indexColumn + 1] == 0:
+                if indexCol == width - 1 or grid[indexRow][indexCol + 1] == 0:
                     perimeter += 1
 
     return perimeter

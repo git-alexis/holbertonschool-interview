@@ -4,7 +4,8 @@
 
 def minOperations(n):
     """
-    Returns the minimum number of operations needed to get exactly n H characters.
+    Returns the minimum number of operations needed to get exactly n H
+    characters.
 
     Args:
         n (int): Target number of H characters.

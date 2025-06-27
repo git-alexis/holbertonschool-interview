@@ -18,22 +18,16 @@ def rain(walls):
     """
     water = 0
 
-    if walls:
-        value1 = 0
-        value2 = 0
-        for index1 in range(0, len(walls)):
-            value1 = walls[index1]
-            if value1 > 0:
-                for index2 in range(index1 + 1, len(walls)):
-                    value2 = walls[index2]
-                    if value2 > 0 and walls[index2 - 1] == 0:
-                        water += min(value1, value2) * (index2 - index1 - 1)
-                        index1 = index2
-                        value1 = value2
-                        break
-                    elif value2 > 0 and walls[index2 - 1] > 0:
-                        index1 = index2
-                        value1 = value2
-                        break
+    for i in range(1, len(walls) - 1):
+
+        left = walls[i]
+        for j in range(i):
+            left = max(left, walls[j])
+
+        right = walls[i]
+        for j in range(i + 1, len(walls)):
+            right = max(right, walls[j])
+
+        water += (min(left, right) - walls[i])
 
     return water

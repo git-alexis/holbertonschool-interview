@@ -10,26 +10,26 @@
 
 size_t binary_tree_height(heap_t *tree)
 {
-    size_t size_left = 0, size_right = 0;
+	size_t size_left = 0, size_right = 0;
 
-    if (tree == NULL)
-    {
-        return (0);
-    }
-    else
-    {
-        size_left = binary_tree_height(tree->left) + 1;
-        size_right = binary_tree_height(tree->right) + 1;
-    }
+	if (tree == NULL)
+	{
+		return (0);
+	}
+	else
+	{
+		size_left = binary_tree_height(tree->left) + 1;
+		size_right = binary_tree_height(tree->right) + 1;
+	}
 
-    if (size_left >= size_right)
-    {
-        return (size_left);
-    }
-    else
-    {
-        return (size_right);
-    }
+	if (size_left >= size_right)
+	{
+		return (size_left);
+	}
+	else
+	{
+		return (size_right);
+	}
 }
 
 /**
@@ -42,13 +42,13 @@ size_t binary_tree_height(heap_t *tree)
 
 size_t binary_tree_size(const binary_tree_t *tree)
 {
-    if (tree == NULL)
-    {
-        return (0);
-    }
+	if (tree == NULL)
+	{
+		return (0);
+	}
 
-    return (1 + binary_tree_size(tree->left) +
-        binary_tree_size(tree->right));
+	return (1 + binary_tree_size(tree->left) +
+		binary_tree_size(tree->right));
 }
 
 /**
@@ -60,27 +60,27 @@ size_t binary_tree_size(const binary_tree_t *tree)
  */
 heap_t *find_node_for_top(heap_t *root)
 {
-    if (!root)
-    {
-        return (NULL);
-    }
+	if (!root)
+	{
+		return (NULL);
+	}
 
-    if (!root->left && !root->right)
-    {
-        return (root);
-    }
+	if (!root->left && !root->right)
+	{
+		return (root);
+	}
 
-    if (binary_tree_height(root->left) > binary_tree_height(root->right))
-    {
-        return (find_node_for_top(root->left));
-    }
+	if (binary_tree_height(root->left) > binary_tree_height(root->right))
+	{
+		return (find_node_for_top(root->left));
+	}
 
-    if (binary_tree_size(root->left) > binary_tree_size(root->right))
-    {
-        return (find_node_for_top(root->right));
-    }
+	if (binary_tree_size(root->left) > binary_tree_size(root->right))
+	{
+		return (find_node_for_top(root->right));
+	}
 
-    return (find_node_for_top(root->right));
+	return (find_node_for_top(root->right));
 }
 
 /**
@@ -90,37 +90,37 @@ heap_t *find_node_for_top(heap_t *root)
  */
 void node_climb(heap_t *root)
 {
-    heap_t *largest = NULL;
-    int temp_value;
+	heap_t *largest = NULL;
+	int temp_value;
 
-    if (!root)
-    {
-        return;
-    }
+	if (!root)
+	{
+		return;
+	}
 
-    if (root->right)
-    {
-        if (root->right->n > root->left->n)
-        {
-            largest = root->right;
-        }
-        else
-        {
-            largest = root->left;
-        }
-    }
-    else if (root->left)
-    {
-        largest = root->left;
-    }
+	if (root->right)
+	{
+		if (root->right->n > root->left->n)
+		{
+			largest = root->right;
+		}
+		else
+		{
+			largest = root->left;
+		}
+	}
+	else if (root->left)
+	{
+		largest = root->left;
+	}
 
-    if (largest && largest->n > root->n)
-    {
-        temp_value = largest->n;
-        largest->n = root->n;
-        root->n = temp_value;
-        node_climb(largest);
-    }
+	if (largest && largest->n > root->n)
+	{
+		temp_value = largest->n;
+		largest->n = root->n;
+		root->n = temp_value;
+		node_climb(largest);
+	}
 }
 
 /**
@@ -132,38 +132,38 @@ void node_climb(heap_t *root)
  */
 int heap_extract(heap_t **root)
 {
-    heap_t *last_node = NULL;
-    int root_value;
+	heap_t *last_node = NULL;
+	int root_value;
 
-    if (!root || !*root)
-    {
-        return (0);
-    }
+	if (!root || !*root)
+	{
+		return (0);
+	}
 
-    root_value = (*root)->n;
-    last_node = find_node_for_top(*root);
+	root_value = (*root)->n;
+	last_node = find_node_for_top(*root);
 
-    if ((*root) == last_node)
-    {
-        free(*root);
-        *root = NULL;
-        return (root_value);
-    }
+	if ((*root) == last_node)
+	{
+		free(*root);
+		*root = NULL;
+		return (root_value);
+	}
 
-    if (last_node->parent->right)
-    {
-        last_node->parent->right = NULL;
-    }
-    else
-    {
-        last_node->parent->left = NULL;
-    }
+	if (last_node->parent->right)
+	{
+		last_node->parent->right = NULL;
+	}
+	else
+	{
+		last_node->parent->left = NULL;
+	}
 
-    (*root)->n = last_node->n;
+	(*root)->n = last_node->n;
 
-    node_climb(*root);
+	node_climb(*root);
 
-    free(last_node);
+	free(last_node);
 
-    return (root_value);
+	return (root_value);
 }

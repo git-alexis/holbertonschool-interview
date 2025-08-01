@@ -135,7 +135,7 @@ int heap_extract(heap_t **root)
     heap_t *last_node = NULL;
     int root_value;
 
-    if (!root)
+    if (!root || !*root)
     {
         return (0);
     }

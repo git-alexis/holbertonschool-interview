@@ -119,18 +119,10 @@ int wildcmp(char *s1, char *s2)
 		if (*s2 == '\0')
 			return (1);
 
-		char *temp;
-
-		temp = malloc(strlen(s1) + 1);
-		if (temp == NULL)
-			return (0);
-
-		strcpy(temp, s1);
+		char *temp = s1;
 
 		if (does_contain_other(temp + 1, *s2) == 1)
 			s1 = move_until_same_character(s1 + 1, *s2);
-
-		free(temp);
 
 		return (wildcmp(s1, s2));
 	}

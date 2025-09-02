@@ -2,8 +2,6 @@
 #define WILD_COMPARE
 
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
 int only_stars(char *s2);
 char *move_until_no_star(char *s2);

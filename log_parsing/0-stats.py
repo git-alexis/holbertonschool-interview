@@ -6,7 +6,6 @@ Reads stdin line by line and computes metrics:
 """
 
 import sys
-import re
 
 
 def print_stats(total_size, status_counts):
@@ -40,15 +39,14 @@ if __name__ == "__main__":
 
     for line in sys.stdin:
         line = line.strip()
-        parts = line.split(' ')
+        if not line:
+            continue
+        parts = line.split()
 
         try:
             file_size = int(parts[-1])
             total_size += file_size
         except ValueError:
-            continue
-
-        if len(parts) < 9:
             continue
 
         try:

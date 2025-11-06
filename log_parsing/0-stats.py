@@ -38,25 +38,18 @@ if __name__ == "__main__":
         500: 0
     }
 
-    try:
-        for line in sys.stdin:
-            line = line.strip()
-
-            m = re.search(r'(\d{3}) (\d+)$', line)
-            if not m:
-                continue
-
-            status_code = int(m.group(1))
-            file_size = int(m.group(2))
-
-            if status_code in status_counts:
-                status_counts[status_code] += 1
-            total_size += file_size
-            line_count += 1
-
-            if line_count % 10 == 0:
-                print_stats(total_size, status_counts)
-    except KeyboardInterrupt:
-        raise
+    for line in sys.stdin:
+        line = line.strip()
+        m = re.search(r'(\d+)\s+(\d+)$', line)
+        if not m:
+            continue
+        status_code = int(m.group(1))
+        file_size = int(m.group(2))
+        if status_code in status_counts:
+            status_counts[status_code] += 1
+        total_size += file_size
+        line_count += 1
+        if line_count % 10 == 0:
+            print_stats(total_size, status_counts)
 
     print_stats(total_size, status_counts)

@@ -38,22 +38,27 @@ if __name__ == "__main__":
         500: 0
     }
 
-    pattern = re.compile(r'"\s*(\d{3})\s+(\d+)$')
-
     for line in sys.stdin:
         line = line.strip()
-        m = pattern.search(line)
-        if not m:
+        parts = line.split(' ')
+
+        try:
+            file_size = int(parts[-1])
+            total_size += file_size
+        except ValueError:
             continue
 
-        file_size = int(m.group(2))
-        total_size += file_size
+        if len(parts) < 9:
+            continue
+
+        try:
+            status_code = int(parts[-2])
+            if status_code in status_counts:
+                status_counts[status_code] += 1
+        except ValueError:
+            pass
+
         line_count += 1
-
-        status_code = int(m.group(1))
-        if status_code in status_counts:
-           status_counts[status_code] += 1
-
         if line_count % 10 == 0:
             print_stats(total_size, status_counts)
 

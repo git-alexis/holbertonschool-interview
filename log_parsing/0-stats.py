@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     try:
         for line in sys.stdin:
-            parts = line.strip()
+            line = line.strip()
 
             m = re.search(r'(\d{3}) (\d+)$', line)
             if not m:

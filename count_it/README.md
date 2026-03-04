@@ -88,20 +88,6 @@ If the subreddit is invalid or inaccessible, nothing is printed.
 
 Redirects are disabled to avoid false results from Reddit search pages.
 
-### Files
-
-- 0-count.py   → Recursive Reddit API keyword counter
-- README.md    → Project documentation
-
-## Concepts Practiced
-
-- Recursion
-- HTTP requests with the requests library
-- Regular expressions
-- Sorting with custom keys
-- Dictionary and Counter usage
-- Working with APIs
-
-### Author
+## Author
 
 Alexis BILLEMONT — Interview Preparation Project — Holberton School

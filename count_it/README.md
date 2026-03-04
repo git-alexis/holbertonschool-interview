@@ -17,7 +17,7 @@ The matching is case-insensitive and only counts full words (e.g., java will not
 
 def count_words(subreddit, word_list)
 
-# Parameters
+### Parameters
 
 - subreddit (str)
 The subreddit to query.
@@ -39,14 +39,14 @@ Counts how many times each keyword appears in post titles.
 
 - Only full word matches are counted.
 
-# Example:
+### Example:
 
 javascript → counted
 java → NOT counted inside "javascript"
 
 - If duplicate keywords appear in word_list, their counts are combined.
 
-# Example:
+### Example:
 
 ["java", "Java"]
 
@@ -64,7 +64,7 @@ The results are printed:
 
 - All words are printed in lowercase
 
-# Example output:
+### Example output:
 
 - python3 0-main.py programming 'react python java javascript scala no_results_for_this_one'
 
@@ -82,13 +82,13 @@ java: 54
 
 
 
-# Error Handling
+### Error Handling
 
 If the subreddit is invalid or inaccessible, nothing is printed.
 
 Redirects are disabled to avoid false results from Reddit search pages.
 
-# Files
+### Files
 
 - 0-count.py   → Recursive Reddit API keyword counter
 - README.md    → Project documentation
@@ -102,6 +102,6 @@ Redirects are disabled to avoid false results from Reddit search pages.
 - Dictionary and Counter usage
 - Working with APIs
 
-# Author
+### Author
 
 Alexis BILLEMONT — Interview Preparation Project — Holberton School

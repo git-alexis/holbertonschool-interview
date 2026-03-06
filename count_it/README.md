@@ -90,4 +90,4 @@ Redirects are disabled to avoid false results from Reddit search pages.
 
 ## Author
 
-Alexis BILLEMONT — Interview Preparation Project — Holberton School
+Alexis BILLEMONT — Algorithm Projects — Holberton School

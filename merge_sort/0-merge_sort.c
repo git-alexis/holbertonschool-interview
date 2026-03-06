@@ -13,15 +13,15 @@
  */
 void print_subarray(int *array, size_t start, size_t size)
 {
-    size_t index;
+	size_t index;
 
-    for (index = 0; index < size; index++)
-    {
-        if (index)
-            printf(", ");
-        printf("%d", array[start + index]);
-    }
-    printf("\n");
+	for (index = 0; index < size; index++)
+	{
+		if (index)
+			printf(", ");
+		printf("%d", array[start + index]);
+	}
+	printf("\n");
 }
 
 /**
@@ -30,40 +30,40 @@ void print_subarray(int *array, size_t start, size_t size)
  * @array: array containing the subarrays
  * @buffer: temporary buffer used for merging
  * @left: start index of the left subarray
- * @mid: start index of the right subarray
+ * @middle: start index of the right subarray
  * @right: end index of the right subarray
  *
  * Return: Nothing
  */
 void merge(int *array, int *buffer, size_t left, size_t middle, size_t right)
 {
-    size_t indexLeftSub = left, indexRightSub = middle, indexBuffer = left;
+	size_t indexLeftSub = left, indexRightSub = middle, indexBuffer = left;
 
-    printf("Merging...\n[left]: ");
-    print_subarray(array, left, middle - left);
+	printf("Merging...\n[left]: ");
+	print_subarray(array, left, middle - left);
 
-    printf("[right]: ");
-    print_subarray(array, middle, right - middle);
+	printf("[right]: ");
+	print_subarray(array, middle, right - middle);
 
-    while (indexLeftSub < middle && indexRightSub < right)
-    {
-        if (array[indexLeftSub] <= array[indexRightSub])
-            buffer[indexBuffer++] = array[indexLeftSub++];
-        else
-            buffer[indexBuffer++] = array[indexRightSub++];
-    }
+	while (indexLeftSub < middle && indexRightSub < right)
+	{
+		if (array[indexLeftSub] <= array[indexRightSub])
+			buffer[indexBuffer++] = array[indexLeftSub++];
+		else
+			buffer[indexBuffer++] = array[indexRightSub++];
+	}
 
-    while (indexLeftSub < middle)
-        buffer[indexBuffer++] = array[indexLeftSub++];
+	while (indexLeftSub < middle)
+		buffer[indexBuffer++] = array[indexLeftSub++];
 
-    while (indexRightSub < right)
-        buffer[indexBuffer++] = array[indexRightSub++];
+	while (indexRightSub < right)
+		buffer[indexBuffer++] = array[indexRightSub++];
 
-    for (indexLeftSub = left; indexLeftSub < right; indexLeftSub++)
-        array[indexLeftSub] = buffer[indexLeftSub];
+	for (indexLeftSub = left; indexLeftSub < right; indexLeftSub++)
+		array[indexLeftSub] = buffer[indexLeftSub];
 
-    printf("[Done]: ");
-    print_subarray(array, left, right - left);
+	printf("[Done]: ");
+	print_subarray(array, left, right - left);
 }
 
 /**
@@ -78,17 +78,17 @@ void merge(int *array, int *buffer, size_t left, size_t middle, size_t right)
  */
 void merge_recursive(int *array, int *buffer, size_t left, size_t right)
 {
-    size_t middle;
+	size_t middle;
 
-    if (right - left < 2)
-        return;
+	if (right - left < 2)
+		return;
 
-    middle = left + (right - left) / 2;
+	middle = left + (right - left) / 2;
 
-    merge_recursive(array, buffer, left, middle);
-    merge_recursive(array, buffer, middle, right);
+	merge_recursive(array, buffer, left, middle);
+	merge_recursive(array, buffer, middle, right);
 
-    merge(array, buffer, left, middle, right);
+	merge(array, buffer, left, middle, right);
 }
 
 /**
@@ -101,16 +101,16 @@ void merge_recursive(int *array, int *buffer, size_t left, size_t right)
  */
 void merge_sort(int *array, size_t size)
 {
-    int *buffer;
+	int *buffer;
 
-    if (!array || size < 2)
-        return;
+	if (!array || size < 2)
+		return;
 
-    buffer = malloc(sizeof(int) * size);
-    if (!buffer)
-        return;
+	buffer = malloc(sizeof(int) * size);
+	if (!buffer)
+		return;
 
-    merge_recursive(array, buffer, 0, size);
+	merge_recursive(array, buffer, 0, size);
 
-    free(buffer);
+	free(buffer);
 }
